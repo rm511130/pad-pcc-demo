@@ -3,6 +3,7 @@ package io.pivotal.service;
 import io.pivotal.domain.Customer;
 import io.pivotal.repo.jpa.CustomerRepository;
 
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,8 +34,9 @@ public class CustomerSearchService {
 		
 		setCacheMiss();
 		
+		//@Query("SELECT e FROM customer e WHERE e.email LIKE %?1%")
 		List<Customer> customers = jpaCustomerRepository.findByEmail(email);
-		
+
 		return customers.size() == 0 ? null : customers.get(0);
 	}
 
